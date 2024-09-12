@@ -122,7 +122,6 @@ class Interface(QtWidgets.QWidget):
 
         self.setLayout(main_layout)
 
-
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
 

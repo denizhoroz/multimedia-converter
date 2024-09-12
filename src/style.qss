@@ -1,18 +1,18 @@
 /*
-color palette reference: https://colorhunt.co/palette/0306373c0753720455910a67
-#030637
-#3C0753
-#720455
-#910A67
+color palette reference: https://colorhunt.co/palette/35374b34495550727b78a083
+#35374B
+#344955
+#50727B
+#78A083
 
 */
 
 QWidget {
-    background-color: #910A67;
+    background-color: #78A083;
 }
 
 QLabel#header {
-    color: #3C0753;
+    color: #344955;
     font-size: 40px;
     font-weight: bold;
     font-family: 'Arial';
@@ -23,14 +23,14 @@ QLabel#header {
 }
 
 QFrame {
-    color: #030637;
+    color: #50727B;
     border: 0px;
     min-width: 1px;
     min-height: 1px;
 }
 
 QGroupBox {
-    border: 2px solid #3C0753;
+    border: 2px solid #50727B;
     border-radius: 5px;
     margin-top: 1ex;   
     font-size: 20px;
@@ -43,7 +43,7 @@ QGroupBox::title {
     subcontrol-origin: margin;
     subcontrol-position: top;
     padding: 0 8px;
-    color: #3C0753;
+    color: #344955;
 }
 
 QListWidget {
@@ -51,12 +51,12 @@ QListWidget {
 }
 
 QPushButton {
-    background-color: #720455;
+    background-color: #50727B;
 }
 
 QGroupBox QLabel {
     font-size: 15px;
     font-weight: bold;
     font-family: 'Arial';
-    color: #3C0753;
+    color: #344955;
 }
