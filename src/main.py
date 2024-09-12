@@ -1,5 +1,5 @@
 import sys
-import random
+import os
 from PySide6 import QtCore, QtWidgets, QtGui
 
 class Interface(QtWidgets.QWidget):
@@ -14,15 +14,17 @@ class Interface(QtWidgets.QWidget):
         self.load_stylesheet()
 
         # Initialize widgets
-        self.initialize_widgets()
+        self.initialize_ui()
+
+        # Variables
+        self.convertion_queue = []
 
     def load_stylesheet(self):
         with open('./src/style.qss', 'r') as file:
             stylesheet = file.read()
             self.setStyleSheet(stylesheet)
 
-    def initialize_widgets(self):
-        
+    def initialize_ui(self):
         main_layout = QtWidgets.QVBoxLayout()
         group_layout = QtWidgets.QHBoxLayout()
 
@@ -43,26 +45,26 @@ class Interface(QtWidgets.QWidget):
         group_select = QtWidgets.QGroupBox("Select Files")
         group_select_layout = QtWidgets.QGridLayout()
 
-        list_convert_queue = QtWidgets.QListWidget()
-        list_convert_queue.addItem('item1')
-        list_convert_queue.addItem('item2')
-        list_convert_queue.addItem('item3')
+        self.list_convert_queue = QtWidgets.QListWidget()
 
         button_select_files = QtWidgets.QPushButton("Select files")
+        button_select_files.clicked.connect(self.load_file)
 
         label_dst = QtWidgets.QLabel('Destination folder')
 
         button_change_dst = QtWidgets.QPushButton("📁")
         button_change_dst.setFixedWidth(25)
+        button_change_dst.clicked.connect(self.select_dest)
 
-        dst_path = QtWidgets.QLabel('destination/folder')
+        self.label_dst_path = QtWidgets.QLabel('destination/folder')
+        self.label_dst_path.setObjectName('destination-folder')
 
-        group_select_layout.addWidget(list_convert_queue,   0, 0, 1, 2)
-        group_select_layout.addWidget(button_select_files,  1, 0, 1, 2)
-        group_select_layout.addItem(plain_spacer1,          2, 0, 1, 2)
-        group_select_layout.addWidget(label_dst,            3, 0, 1, 2)
-        group_select_layout.addWidget(button_change_dst,    4, 0,)
-        group_select_layout.addWidget(dst_path,             4, 1,)
+        group_select_layout.addWidget(self.list_convert_queue,   0, 0, 1, 2)
+        group_select_layout.addWidget(button_select_files,       1, 0, 1, 2)
+        group_select_layout.addItem(plain_spacer1,               2, 0, 1, 2)
+        group_select_layout.addWidget(label_dst,                 3, 0, 1, 2)
+        group_select_layout.addWidget(button_change_dst,         4, 0,)
+        group_select_layout.addWidget(self.label_dst_path,       4, 1,)
 
         group_select.setLayout(group_select_layout)
 
@@ -121,6 +123,42 @@ class Interface(QtWidgets.QWidget):
         #main_layout.addWidget(footer)
 
         self.setLayout(main_layout)
+    
+    def load_file(self):
+        # Select files
+        file_path, _ = QtWidgets.QFileDialog.getOpenFileNames(self, 
+                                                              "Select File", 
+                                                              "", 
+                                                              "All Files (*)",)
+
+        # Filter and load files
+        for file in file_path:
+            if file not in self.convertion_queue:
+                self.convertion_queue.append(file)
+        
+        # Display files on the list
+        for file in self.convertion_queue:
+            item = os.path.basename(file)
+            self.list_convert_queue.addItem(item)
+
+    def select_dest(self):
+        # Set default dst
+        if len(self.convertion_queue) > 0:
+            self.dst_path = os.path.dirname(self.convertion_queue[0])
+
+        # Select folder
+        self.dst_path = QtWidgets.QFileDialog.getExistingDirectory(self, 
+                                                                 "Select Destination Folder", 
+                                                                 "", 
+                                                                 QtWidgets.QFileDialog.Option.ShowDirsOnly | QtWidgets.QFileDialog.Option.DontUseNativeDialog,)
+        
+        # Display folder on label
+        self.label_dst_path.setText(self.dst_path)
+
+        
+    def something(self):
+        pass
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
