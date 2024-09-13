@@ -1,2 +1,5 @@
 venv/
 requirements.txt
+build/
+dist/
+main.spec
