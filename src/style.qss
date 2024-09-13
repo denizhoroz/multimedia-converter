@@ -1,21 +1,21 @@
 /*
-color palette reference: https://colorhunt.co/palette/35374b34495550727b78a083
-#35374B
-#344955
-#50727B
-#78A083
+color palette reference: https://colorhunt.co/palette/343131a04747d8a25eeedf7a
+#343131
+#A04747
+#D8A25E
+#EEDF7A
 
 */
 
 QWidget {
-    background-color: #78A083;
+    background-color: #343131;
 }
 
 QLabel#header {
-    color: #344955;
+    color: #D8A25E;
     font-size: 40px;
     font-weight: bold;
-    font-family: 'Arial';
+    font-family: 'Verdana';
     text-align: left;
     vertical-align: top;
     padding: 1px;
@@ -23,19 +23,19 @@ QLabel#header {
 }
 
 QFrame {
-    color: #50727B;
+    color: #A04747;
     border: 0px;
     min-width: 1px;
     min-height: 1px;
 }
 
 QGroupBox {
-    border: 2px solid #50727B;
+    border: 2px solid #A04747;
     border-radius: 5px;
     margin-top: 1ex;   
     font-size: 20px;
     font-weight: bold;
-    font-family: 'Arial';    
+    font-family: 'Verdana';    
     padding: 15px;
     max-width: 250px;                    
 }
@@ -44,7 +44,7 @@ QGroupBox::title {
     subcontrol-origin: margin;
     subcontrol-position: top;
     padding: 0 8px;
-    color: #344955;
+    color: #D8A25E;
 }
 
 QListWidget {
@@ -52,19 +52,43 @@ QListWidget {
 }
 
 QPushButton {
-    background-color: #50727B;
+    background-color: #EEDF7A;
 }
 
 QGroupBox QLabel {
     font-size: 15px;
     font-weight: bold;
-    font-family: 'Arial';
-    color: #344955;
+    font-family: 'Verdana';
+    color: #EEDF7A;
 }
 
 QLabel#destination-folder {
     font-size: 12px;
     font-weight: normal;
-    font-family: 'Arial';
-    color: #344955;
+    font-family: 'Verdana';
+    color: #EEDF7A;
+}
+
+QRadioButton {
+    color: #EEDF7A;
+    font-weight: normal;
+    font-family: 'Verdana';
+}
+
+QComboBox {
+    color: #EEDF7A;
+    font-weight: normal;
+    font-family: 'Verdana';
+}
+
+QComboBox QAbstractItemView {
+    color: #EEDF7A;
+    font-weight: normal;
+    font-family: 'Verdana';
+}
+
+QCheckBox {
+    color: #EEDF7A;
+    font-weight: normal;
+    font-family: 'Verdana';
 }
